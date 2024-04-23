@@ -1,0 +1,6 @@
+#sveltekit-body {
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 100dvh;
+    scroll-behavior: smooth;
+}
