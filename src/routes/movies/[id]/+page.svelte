@@ -1,18 +1,12 @@
 <script lang="ts">
     import { base } from "$app/paths";
+    import BackdropHeader from "$lib/components/BackdropHeader.svelte";
     export let data;
     const { movie } = data;
 </script>
 
+<BackdropHeader {movie} />
 <main class="container">
-    <section class="info">
-        <h1>{movie.title}</h1>
-        <section class="details">
-            <span class="rating">{movie.rating}</span> | {movie.running_time}m
-        </section>
-        <p class="overview">{movie.overview}</p>
-    </section>
-
     <section class="showtimes">
         <h2>Funciones</h2>
         {#each movie.theatres as theatre}
