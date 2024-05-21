@@ -52,8 +52,8 @@
     }
 
     #movies ul {
-        display: flex;
-        flex-flow: row wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
         gap: 1rem;
         padding: 0;
         margin-bottom: 0;
@@ -67,15 +67,11 @@
     #movies li > a {
         display: flex;
         flex-flow: column nowrap;
-        width: 240px;
         gap: 0.5rem;
-        padding: 0.5rem;
         text-decoration: none;
     }
 
     #movies li > a > img {
-        width: 240px;
-        height: 340px;
         background: gray;
         object-fit: cover;
         border-radius: 0.5rem;
