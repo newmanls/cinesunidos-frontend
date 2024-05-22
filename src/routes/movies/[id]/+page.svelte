@@ -2,17 +2,33 @@
     import { base } from "$app/paths";
     import BackdropHeader from "$lib/components/BackdropHeader.svelte";
     export let data;
-    const { movie } = data;
+    let { movie } = data;
 
-    function formatTime(time) {
+    function formatTime(time: string) {
         let timeParts = time.split("T")[1].split(":");
-        console.log(timeParts);
         return `${timeParts[0]}:${timeParts[1]}`;
     }
+
+    async function getShowtimes() {
+        const res = await fetch(
+            `http://127.0.0.1:8000/movies/${movie.id}/showtimes/?date=${formData.date}`,
+        );
+        movie = await res.json();
+    }
+
+    let formData = {
+        movie_id: movie.id,
+        date: "",
+    };
 </script>
 
 <BackdropHeader {movie} />
 <main class="container">
+    <form role="group" on:submit|preventDefault={getShowtimes}>
+        <input type="date" name="date" bind:value={formData.date} />
+        <button type="submit">Consultar</button>
+    </form>
+
     <section class="showtimes">
         <h2>Funciones</h2>
         {#each movie.theatres as theatre}
