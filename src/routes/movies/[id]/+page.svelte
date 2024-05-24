@@ -16,9 +16,18 @@
         movie = await res.json();
     }
 
+    function getCurrentISODate() {
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = String(date.getMonth() + 1).padStart(2, "0");
+        let day = String(date.getDate() + 1).padStart(2, "0");
+
+        return `${year}-${month}-${day}`;
+    }
+
     let formData = {
         movie_id: movie.id,
-        date: "",
+        date: getCurrentISODate(),
     };
 </script>
 
