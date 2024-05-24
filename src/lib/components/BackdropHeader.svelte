@@ -2,30 +2,29 @@
     export let movie: any;
 </script>
 
-<section id="backdrop">
-    <img src={movie.backdrop} alt="backdrop" />
-    <div class="container">
-        <h1>{movie.title}</h1>
-        <section class="details">
-            {#each [movie.original_title, movie.rating, movie.running_time] as detail}
-                <span>{detail}</span>
-            {/each}
-        </section>
-        <p class="overview">{movie.overview}</p>
+<section class="backdrop-header">
+    <img class="backdrop-img" src={movie.backdrop} alt="backdrop" />
+    <div class="container backdrop-content">
+        <img class="poster" src={movie.poster} alt="poster" />
+        <div class="backdrop-info">
+            <h1>{movie.title}</h1>
+            <section class="details">
+                <span class="rating">{movie.rating}</span>
+                <span>{movie.running_time}</span>
+            </section>
+            <p class="overview">{movie.overview}</p>
+            <slot />
+        </div>
     </div>
 </section>
 
 <style>
-    #backdrop {
+    .backdrop-header {
         position: relative;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        height: 600px;
         overflow: hidden;
     }
 
-    #backdrop img {
+    .backdrop-img {
         position: absolute;
         top: 0;
         left: 0;
@@ -33,22 +32,53 @@
         height: 100%;
         object-fit: cover;
         z-index: -1;
-        opacity: 30%;
+        opacity: 10%;
     }
-    #backdrop > .container {
-        position: absolute;
-        bottom: 0;
-        z-index: 1;
+
+    .backdrop-content {
         margin: 2rem auto;
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 2rem;
+    }
+
+    .backdrop-info {
+        margin-top: auto;
+
+        & :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .poster {
+        width: 15rem;
+        border-radius: var(--pico-border-radius);
+        box-shadow: 0px 0.25rem 1rem rgba(0, 0, 0, 0.25);
     }
 
     .details {
         display: flex;
-        font-size: 0.75rem;
+        opacity: 50%;
 
-        & > *:not(:last-child)::after {
+        & > .rating {
+            border: 1px solid var(--pico-color);
+            margin-right: 0.5rem;
+            padding: 0 0.5rem;
+            border-radius: var(--pico-border-radius);
+        }
+
+        & > span:not(.rating):not(:last-child)::after {
             content: "|";
             margin: 0 0.5rem;
+        }
+    }
+
+    @media (width <= 600px) {
+        .backdrop-header > .container {
+            grid-template-columns: auto;
+        }
+        .poster {
+            margin: 0 auto;
         }
     }
 </style>

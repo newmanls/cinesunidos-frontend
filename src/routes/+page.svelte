@@ -7,7 +7,9 @@
 </script>
 
 <main>
-    <BackdropHeader movie={backdropMovie} />
+    <BackdropHeader movie={backdropMovie}>
+        <a role="button" href="{base}/movies/{backdropMovie.id}">Funciones</a>
+    </BackdropHeader>
     <section id="movies" class="container">
         <h2>Películas</h2>
         {#if movies.length < 1}
