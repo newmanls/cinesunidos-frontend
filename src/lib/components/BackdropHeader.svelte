@@ -53,7 +53,7 @@
     .poster {
         width: 15rem;
         border-radius: var(--pico-border-radius);
-        box-shadow: 0px 0.25rem 1rem rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
     }
 
     .details {

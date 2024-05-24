@@ -1,9 +1,12 @@
 <script lang="ts">
     import { base } from "$app/paths";
     import BackdropHeader from "$lib/components/BackdropHeader.svelte";
-    export let data;
+    import LiMoviePoster from "$lib/components/LiMoviePoster.svelte";
+
+    export let data: any;
+
     const { movies, theatres } = data;
-    let backdropMovie = movies[0];
+    let backdropMovie: any = movies[0];
 </script>
 
 <main>
@@ -17,15 +20,11 @@
         {:else}
             <ul>
                 {#each movies as movie}
-                    <li>
-                        <a href="{base}/movies/{movie.id}">
-                            <img
-                                src={movie.poster}
-                                alt="{movie.title} poster"
-                            />
-                            <p class="movie-title">{movie.title}</p>
-                        </a>
-                    </li>
+                    <LiMoviePoster
+                        id={movie.id}
+                        src={movie.poster}
+                        title={movie.title}
+                    />
                 {/each}
             </ul>
         {/if}
@@ -50,30 +49,6 @@
         grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
         gap: 1rem;
         padding: 0;
-        margin-bottom: 0;
-    }
-
-    #movies li {
-        list-style: none;
-        margin-bottom: 0;
-    }
-
-    #movies li > a {
-        display: flex;
-        flex-flow: column nowrap;
-        gap: 0.5rem;
-        text-decoration: none;
-    }
-
-    #movies li > a > img {
-        background: gray;
-        object-fit: cover;
-        border-radius: 0.5rem;
-    }
-
-    #movies li > a > p {
-        text-align: center;
-        font-size: 0.9rem;
         margin-bottom: 0;
     }
 </style>
