@@ -2,11 +2,11 @@
     export let movie: any;
 </script>
 
-<section class="backdrop-header">
-    <img class="backdrop-img" src={movie.backdrop} alt="backdrop" />
-    <div class="container backdrop-content">
+<section class="header">
+    <img class="backdrop" src={movie.backdrop} alt="backdrop" />
+    <div class="container content">
         <img class="poster" src={movie.poster} alt="poster" />
-        <div class="backdrop-info">
+        <div class="info">
             <h1>{movie.title}</h1>
             <section class="details">
                 <span class="rating">{movie.rating}</span>
@@ -19,12 +19,12 @@
 </section>
 
 <style>
-    .backdrop-header {
+    section {
         position: relative;
         overflow: hidden;
     }
 
-    .backdrop-img {
+    .backdrop {
         position: absolute;
         top: 0;
         left: 0;
@@ -35,19 +35,16 @@
         opacity: 10%;
     }
 
-    .backdrop-content {
+    .content {
         margin: 2rem auto;
-        display: grid;
-        grid-template-columns: auto auto;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-end;
         gap: 2rem;
     }
 
-    .backdrop-info {
-        margin-top: auto;
-
-        & :last-child {
-            margin-bottom: 0;
-        }
+    .info:last-child {
+        margin-bottom: 0;
     }
 
     .poster {
@@ -74,8 +71,8 @@
     }
 
     @media (width <= 600px) {
-        .backdrop-header > .container {
-            grid-template-columns: auto;
+        .header > .container {
+            flex-flow: column nowrap;
         }
         .poster {
             margin: 0 auto;
